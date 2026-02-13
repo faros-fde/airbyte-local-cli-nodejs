@@ -1,0 +1,84 @@
+{
+  "name": "@faros-fde-sandbox/airbyte-local-cli",
+  "version": "0.1.0",
+  "description": "Airbyte local cli node js version - Fork for faros-cli integration",
+  "packageManager": "^npm@10.8.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "version": "node -p \"'export const CLI_VERSION = \\'' + require('./package.json').version + '\\';'\" > src/version.ts",
+    "bump-beta": "npm version prerelease --preid=beta ",
+    "bump": "npm version ",
+    "build": "tsc -p src",
+    "lint": "./scripts/lint",
+    "lint-fix": "npm run lint -- --fix",
+    "clean": "rm -rf lib node_modules package-lock.json",
+    "bundle": "npm run build && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --external:*.node",
+    "test": "jest",
+    "pkg": "npm run bundle && pkg --debug --output ./out/pkg/airbyte-local dist/index.js",
+    "shellspec": "npm run bundle && pkg --output ./test/exec/airbyte-local dist/index.js && cp -rf ./test/resources ./test/exec/ && shellspec --chdir ./test/exec"
+  },
+  "homepage": "https://github.com/faros-fde/airbyte-local-cli-nodejs#readme",
+  "author": "Faros AI, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faros-fde/airbyte-local-cli-nodejs.git"
+  },
+  "keywords": ["airbyte", "cli", "docker", "faros"],
+  "bugs": {
+    "url": "https://github.com/faros-fde/airbyte-local-cli-nodejs/issues"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "main": "lib/",
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/dockerode": "^3.3.37",
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.14",
+    "@types/node": "^22.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.13.0",
+    "@yao-pkg/pkg": "^6.9.0",
+    "eslint": "^8.57.1",
+    "eslint-config-faros": "^0.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.3",
+    "typescript": "~5.6.3"
+  },
+  "dependencies": {
+    "cli-table3": "^0.6.5",
+    "commander": "^13.1.0",
+    "didyoumean2": "^7.0.4",
+    "dockerode": "^4.0.9",
+    "lodash": "^4.17.21",
+    "pino": "^9.14.0",
+    "pino-pretty": "^13.0.0",
+    "ts-essentials": "^10.0.4"
+  },
+  "jest": {
+    "silent": false,
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "coverageDirectory": "out/coverage",
+    "transform": {
+      "\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "test/tsconfig.json"
+        }
+      ]
+    },
+    "testPathIgnorePatterns": [
+      ".d.ts",
+      "\\.js"
+    ]
+  }
+}

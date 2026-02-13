@@ -1,0 +1,365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateConfig should succeed 1`] = `
+"{
+  "src": {
+    "image": "farosai/airbyte-faros-graphql-source",
+    "config": {
+      "foo": "bar"
+    }
+  },
+  "dst": {
+    "image": "farosai/airbyte-faros-destination",
+    "config": {
+      "edition_configs": {
+        "api_key": "<UPDATE_YOUR_FAROS_API_KEY>",
+        "edition": "cloud"
+      }
+    }
+  }
+}
+"
+`;
+
+exports[`generateConfig should succeed with image inputs 1`] = `
+"{
+  "src": {
+    "image": "farosai/airbyte-faros-graphql-source",
+    "config": {
+      "foo": "bar"
+    }
+  },
+  "dst": {
+    "image": "farosai/airbyte-faros-destination",
+    "config": {
+      "foo": "bar"
+    }
+  }
+}
+"
+`;
+
+exports[`generateConfig should succeed with static configs 1`] = `
+"{
+  "src": {
+    "image": "farosai/airbyte-github-source",
+    "config": {
+      "authentication": {
+        "type": "token",
+        "personal_access_token": "<UPDATE_YOUR_GITHUB_TOKEN>"
+      },
+      "organizations": [
+        "<UPDATE_MY_ORG_1>",
+        "<UPDATE_MY_ORG_2>"
+      ]
+    }
+  },
+  "dst": {
+    "image": "farosai/airbyte-faros-destination",
+    "config": {
+      "edition_configs": {
+        "api_key": "<UPDATE_YOUR_FAROS_API_KEY>",
+        "edition": "cloud"
+      }
+    }
+  }
+}
+"
+`;
+
+exports[`parseConfigFile should parse crlf 1`] = `
+{
+  "dst": {
+    "catalog": {},
+    "config": {
+      "edition_config": {
+        "api_key": "***",
+        "api_url": "https://prod.api.faros.ai",
+        "edition": "cloud",
+        "graph": "default",
+      },
+    },
+    "dockerOptions": {
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-destination",
+  },
+  "src": {
+    "catalog": {},
+    "config": {
+      "password": "***",
+      "url": "https://test-instance.service-now.com",
+      "username": "test-username",
+    },
+    "dockerOptions": {
+      "additionalOptions": {
+        "HostConfig": {
+          "Binds": [
+            "/test/path:/test/path/test.json",
+          ],
+        },
+      },
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-source",
+  },
+}
+`;
+
+exports[`parseConfigFile should parse utf16 encoding 1`] = `
+{
+  "dst": {
+    "catalog": {},
+    "config": {
+      "edition_config": {
+        "api_key": "***",
+        "api_url": "https://prod.api.faros.ai",
+        "edition": "cloud",
+        "graph": "default",
+      },
+    },
+    "dockerOptions": {
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-destination",
+  },
+  "src": {
+    "catalog": {},
+    "config": {
+      "password": "***",
+      "url": "https://test-instance.service-now.com",
+      "username": "test-username",
+    },
+    "dockerOptions": {
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-source",
+  },
+}
+`;
+
+exports[`parseConfigFile should pass 1`] = `
+{
+  "dst": {
+    "catalog": {},
+    "config": {
+      "edition_config": {
+        "api_key": "***",
+        "api_url": "https://prod.api.faros.ai",
+        "edition": "cloud",
+        "graph": "default",
+      },
+    },
+    "dockerOptions": {
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-destination",
+  },
+  "src": {
+    "catalog": {},
+    "config": {
+      "password": "***",
+      "url": "https://test-instance.service-now.com",
+      "username": "test-username",
+    },
+    "dockerOptions": {
+      "additionalOptions": {
+        "HostConfig": {
+          "Binds": [
+            "/test/path:/test/path/test.json",
+          ],
+        },
+      },
+      "maxCpus": 2,
+      "maxMemory": 2048,
+    },
+    "image": "farosai/airbyte-servicenow-source",
+  },
+}
+`;
+
+exports[`processSrcInputFile should succeed writing to an output file 1`] = `
+"{"state":{"data":{"format":"base64/gzip","data":"H4sIAAAAAAAAA6uuBQBDv6ajAgAAAA=="}},"type":"STATE","redactedConfig":{"user":"chris"},"sourceType":"example","sourceVersion":"0.12.3"}
+{"state":{"data":{"format":"base64/gzip","data":"H4sIAAAAAAAAA6uuBQBDv6ajAgAAAA=="}},"type":"STATE","sourceStatus":{"status":"SUCCESS"}}
+{"state":{"data":{"format":"base64/gzip","data":"H4sIAAAAAAAAA6uuBQBDv6ajAgAAAA=="}},"type":"STATE","logs":[{"timestamp":***,"message":{"level":30,"msg":"Source version: 0.12.3"}},{"timestamp":***,"message":{"level":30,"msg":"Config: {\\"user\\":\\"chris\\"}"}},{"timestamp":***,"message":{"level":30,"msg":"Catalog: {}"}},{"timestamp":***,"message":{"level":30,"msg":"State: {}"}},{"timestamp":***,"message":{"level":30,"msg":"Syncing ExampleSource"}},{"timestamp":***,"message":{"level":30,"msg":"Finished syncing ExampleSource"}}]}
+"
+`;
+
+exports[`write files to temporary dir loadStateFile should pass with existing state file 1`] = `
+"{"format":"base64/gzip","data":"dGVzdA=="}
+"
+`;
+
+exports[`write files to temporary dir loadStateFile should pass with utf16 state file 1`] = `
+"{"format":"base64/gzip","data":"dGVzdA=="}
+"
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with default only 1`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "append",
+      "stream": {
+        "json_schema": {},
+        "name": "builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "incremental",
+    },
+  ],
+}
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with default only 2`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "append",
+      "stream": {
+        "json_schema": {},
+        "name": "testPrefix__builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "incremental",
+    },
+  ],
+}
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with dst override 1`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "append",
+      "stream": {
+        "json_schema": {},
+        "name": "builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "incremental",
+    },
+  ],
+}
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with dst override 2`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "overwrite",
+      "stream": {
+        "json_schema": {},
+        "name": "testPrefix__builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "full_refresh",
+    },
+  ],
+}
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with src override 1`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "overwrite",
+      "stream": {
+        "json_schema": {},
+        "name": "builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "full_refresh",
+    },
+  ],
+}
+`;
+
+exports[`write files to temporary dir writeCatalog should succeed with src override 2`] = `
+{
+  "streams": [
+    {
+      "destination_sync_mode": "overwrite",
+      "stream": {
+        "json_schema": {},
+        "name": "testOverridePrefix__builds",
+        "supported_sync_modes": [
+          "full_refresh",
+          "incremental",
+        ],
+      },
+      "sync_mode": "full_refresh",
+    },
+  ],
+}
+`;
+
+exports[`writeStateFile should prioritize STREAM states over LEGACY state 1`] = `
+[
+  {
+    "stream": {
+      "stream_descriptor": {
+        "name": "users",
+      },
+      "stream_state": {
+        "cursor": "2024-01-01",
+      },
+    },
+    "type": "STREAM",
+  },
+]
+`;
+
+exports[`writeStateFile should write LEGACY state data only 1`] = `
+{
+  "data": "dGVzdA==",
+  "format": "base64/gzip",
+}
+`;
+
+exports[`writeStateFile should write STREAM states as an array 1`] = `
+[
+  {
+    "stream": {
+      "stream_descriptor": {
+        "name": "users",
+      },
+      "stream_state": {
+        "cursor": "2024-01-01",
+      },
+    },
+    "type": "STREAM",
+  },
+  {
+    "stream": {
+      "stream_descriptor": {
+        "name": "orders",
+      },
+      "stream_state": {
+        "cursor": "2024-02-01",
+      },
+    },
+    "type": "STREAM",
+  },
+]
+`;
