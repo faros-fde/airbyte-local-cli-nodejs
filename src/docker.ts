@@ -126,7 +126,9 @@ export async function pullDockerImage(image: string): Promise<void> {
   logger.info(`Pulling docker image: ${image}`);
 
   try {
-    const stream = await _docker.pull(image);
+    const platform = getImagePlatform(image);
+    const options: any = platform ? {platform} : {};
+    const stream = await _docker.pull(image, options);
     await new Promise((resolve, reject) => {
       _docker.modem.followProgress(stream, (err, res) => (err ? reject(err) : resolve(res)));
     });
