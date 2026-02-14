@@ -81,15 +81,16 @@ export async function stopAllContainers(): Promise<void> {
 }
 
 /**
- * Use 'linux/amd64' plaform for farosai and farossam images.
+ * Use 'linux/amd64' plaform for farosai images (they don't have ARM64 builds).
  * Use 'windows/amd64' platform if there's `windows` in the tag.
+ * farossam images should use native platform (they only have ARM64).
  *
  * TODO: @FAI-15309 This should be removed once we have a proper multi-platform image.
  */
 function getImagePlatform(image: string): string | undefined {
   if (image.includes(':windows')) {
     return 'windows/amd64';
-  } else if (image?.startsWith('farosai') || image?.startsWith('farossam')) {
+  } else if (image?.startsWith('farosai')) {
     return 'linux/amd64';
   }
   return undefined;
